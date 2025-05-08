@@ -1,0 +1,10 @@
+[package]
+name = "bee-bot"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+serde = { version = "1.0.219", features = ["derive"] }
+serenity = { version = "0.12.4", features = ["full"] }
+tokio = { version = "1.43.0", features = ["full"] }
+toml = "0.8.22"
