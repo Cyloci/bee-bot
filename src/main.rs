@@ -9,7 +9,7 @@ use handler::Handler;
 async fn main() {
     let config = config::load();
 
-    let intents = GatewayIntents::GUILD_MESSAGES;
+    let intents = GatewayIntents::GUILD_MESSAGES | GatewayIntents::MESSAGE_CONTENT;
     let handler = Handler::new(config.clone());
 
     let mut client = Client::builder(&config.discord_token, intents)

@@ -21,8 +21,10 @@ impl Config {
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct ChannelConfig {
-    pub id: u64, 
+    pub id: u64,
     pub reaction: Option<ReactionConfig>,
+    pub media_only: Option<bool>,
+    pub auto_thread: Option<bool>,
 }
 
 #[derive(Debug, Clone, Deserialize)]
