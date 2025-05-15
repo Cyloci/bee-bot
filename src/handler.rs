@@ -1,10 +1,8 @@
 use std::sync::LazyLock;
 
 use regex::Regex;
-use serenity::model::channel::Message;
-use serenity::model::gateway::Ready;
-use serenity::prelude::*;
-use serenity::{all::CreateThread, async_trait};
+use serenity::all::{AutoArchiveDuration, CreateThread, Message, Ready};
+use serenity::{async_trait, prelude::*};
 
 use crate::config::{ChannelConfig, Config};
 
@@ -89,7 +87,11 @@ impl EventHandler for Handler {
             let name = make_thread_name(&msg);
             if let Err(why) = msg
                 .channel_id
-                .create_thread_from_message(&ctx.http, msg.id, CreateThread::new(name))
+                .create_thread_from_message(
+                    &ctx.http,
+                    msg.id,
+                    CreateThread::new(name).auto_archive_duration(AutoArchiveDuration::OneHour),
+                )
                 .await
             {
                 println!("Error creating thread: {why:?}");
